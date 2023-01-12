@@ -1,0 +1,33 @@
+<div id="<%= dom_id board %>">
+  <p>
+    <strong>Name:</strong>
+    <%= board.name %>
+  </p>
+
+  <p>
+    <strong>Email:</strong>
+    <%= board.email %>
+  </p>
+
+  <p>
+    <strong>Board:</strong>
+    <%= board.width %> X <%= board.height %> (<%= board.width * board.height %> squares)
+  </p>
+
+
+  <div style="display:flex;">
+    <% board.grid.each do |row| %>
+      <div>
+        <% row.each do |col| %>
+          <% if col == nil %>
+            <input type="checkbox" disabled>
+          <% end %>
+          <% if col == true %>
+            💣
+          <% end %>          
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+</div>

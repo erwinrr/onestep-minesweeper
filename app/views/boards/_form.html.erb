@@ -1,0 +1,54 @@
+<%= form_with(model: board) do |form| %>
+  <% if board.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(board.errors.count, "error") %> prohibited this board from being saved:</h2>
+
+      <ul>
+        <% board.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="card">
+    <div class="card-body">
+      <div class="mb-3">
+        <%= form.label :name, style: "display: block", class: "form-label" %>
+        <%= form.text_field :name, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :email, style: "display: block", class: "form-label" %>
+        <%= form.text_field :email, class: "form-control" %>
+        <div class="form-text">we will never share your email</div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="mb-3">
+            <%= form.label :width, style: "display: block", class: "form-label" %>
+            <%= form.number_field :width, class: "form-control" %>
+          </div>
+        </div>
+        <div class="col">
+          <div class="mb-3">
+            <%= form.label :height, style: "display: block", class: "form-label" %>
+            <%= form.number_field :height, class: "form-control" %>
+          </div>
+        </div>
+        <div class="col">
+          <div class="mb-3">
+            <%= form.label :mine_count, style: "display: block", class: "form-label" %>
+            <%= form.number_field :mine_count, class: "form-control" %>
+          </div>
+        </div>        
+      </div>
+      <div class="mb-3 text-right">
+        <%= form.submit "Generate Board", class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+  
+</form>
+
+
+<% end %>
