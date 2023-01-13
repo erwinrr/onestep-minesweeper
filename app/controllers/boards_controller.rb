@@ -24,12 +24,12 @@ class BoardsController < ApplicationController
     @board = Board.new(board_params)
 
     respond_to do |format|
-      @board.grid = Array.new(@board.width){ Array.new(@board.height) }
+      @board.grid = Array.new(@board.height){ Array.new(@board.width) }
       area = @board.width * @board.height
       mines = Array.new(@board.mine_count)
       count = 0 
       while count != mines.length
-        mine = rand(0..area)
+        mine = rand(0...area)
         if !mines.include? mine 
           mines[count] = mine 
           count += 1
