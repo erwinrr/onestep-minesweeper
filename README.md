@@ -1,24 +1,9 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+OneStep Minsweeper App built with  Ruby on Rails + esbuild + bootstrap
 
-Things you may want to cover:
+* Ruby 3.1.3
 
-* Ruby version
+* Rails gem "rails", "~> 7.0.4"
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Demo App can be found at: https://onestep-minesweeper.herokuapp.com/
