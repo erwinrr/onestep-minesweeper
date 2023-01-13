@@ -26,31 +26,7 @@ class BoardsController < ApplicationController
     @board = Board.new(board_params)
     respond_to do |format|      
       if @board.save
-        @board.grid = Array.new(@board.height){ Array.new(@board.width) }
-        # todo: use an array of integers possibilities then shuffle and pop off random numbers 
-        # to prevent having to "guess correct" when the board starts filling up
-        # mines = Array.new(@board.mine_count)
-        # mines_added = 0 
-        # until mines_added == mines.length
-        #   mine = rand(0...@board.area)
-        #   if mines.exclude? mine 
-        #     mines[mines_added] = mine 
-        #     mines_added += 1
-        #   end   
-        # end
-        mines = []
-        random_possibilities = (0...@board.area).to_a.shuffle
-        @board.mine_count.times do 
-          mine = random_possibilities.pop 
-          mines.push(mine)
-        end
-        mines.each do |mine| 
-          cordinates = mine.divmod(@board.width)
-          x = cordinates[0]
-          y = cordinates[1]
-          @board.grid[x][y] = true
-        end 
-        @board.save
+        build_grid(@board)
         format.html { redirect_to board_url(@board), notice: "Board was successfully created." }
         format.json { render :show, status: :created, location: @board }
       else
@@ -64,6 +40,7 @@ class BoardsController < ApplicationController
   def update
     respond_to do |format|
       if @board.update(board_params)
+        build_grid(@board)
         format.html { redirect_to board_url(@board), notice: "Board was successfully updated." }
         format.json { render :show, status: :ok, location: @board }
       else
@@ -93,4 +70,21 @@ class BoardsController < ApplicationController
     def board_params
       params.require(:board).permit(:name, :email, :width, :height, :grid, :mine_count)
     end
+
+    def build_grid(board)
+      board.grid = Array.new(board.height){ Array.new(board.width) }
+      mines = []
+      random_possibilities = (0...board.area).to_a.shuffle
+      board.mine_count.times do 
+        mines.push(random_possibilities.pop)
+      end
+      mines.each do |mine| 
+        cordinates = mine.divmod(board.width)
+        x = cordinates[0]
+        y = cordinates[1]
+        board.grid[x][y] = true
+      end 
+      board.save
+    end
+
 end

@@ -2,9 +2,10 @@
 
 <%= render @board  %>
 
-<div>
-  <%= link_to "Edit this board", edit_board_path(@board) %> |
-  <%= link_to "Back to boards", boards_path %>
-
-  <%= button_to "Destroy this board", @board, method: :delete, class: "btn btn-danger" %>
+<div class="row pt-4 pb-5">
+  <div class="col">
+  <%= link_to "Edit this board", edit_board_path(@board), class: "btn btn-primary" %> 
+  <%= link_to "View All Generated Boards", boards_path, class: "btn btn-primary" %>
+  <%= button_to "Destroy this board", @board, method: :delete, class: "btn btn-danger", form_class: "delete-board-form" %>
+  </div>
 </div>

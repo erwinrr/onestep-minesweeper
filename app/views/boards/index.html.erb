@@ -1,14 +1,24 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Boards</h1>
+<div class="row pt-3 pb-5">
+  <div class="col">
+    <h1 class="text-center">Boards</h1>
+  </div>
+</div>
+
+<div class="row pt-1 pb-4">
+  <div class="col">
+    <%= link_to "New board", new_board_path, class: "btn btn-success float-end" %>
+  </div>
+</div>
 
 <div id="boards">
   <% @boards.each do |board| %>
     <%= render board %>
-    <p>
-      <%= link_to "Show this board", board %>
-    </p>
+    <div class="row pt-1 pb-4">
+      <div class="col">
+        <%= link_to "Show this board", board, class: "btn btn-primary" %>
+      </div>
+    </div>
   <% end %>
 </div>
-
-<%= link_to "New board", new_board_path %>

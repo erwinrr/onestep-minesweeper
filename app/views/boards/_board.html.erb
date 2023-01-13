@@ -1,33 +1,33 @@
-<div id="<%= dom_id board %>">
-  <p>
-    <strong>Name:</strong>
-    <%= board.name %>
-  </p>
-
-  <p>
-    <strong>Email:</strong>
-    <%= board.email %>
-  </p>
-
-  <p>
-    <strong>Board:</strong>
-    <%= board.width %> X <%= board.height %> (<%= board.width * board.height %> squares) -  💣<%= board.mine_count %>
-  </p>
-
-
-  <div style="display:flex;flex-direction:column">
-    <% board.grid.each do |row| %>
-      <div>
-        <% row.each do |col| %>
-          <% if col == nil %>
-            <input type="checkbox" disabled style="width:16px">
+<div id="<%= dom_id board %>" class="row board-row">
+  <div class="col">
+    <div class="card">
+      <div class="card-header">
+        <strong>Name:</strong> <%= board.name %>
+      </div>    
+      <div class="card-body">
+        <p>
+          <strong>Email:</strong>
+          <%= board.email %>
+        </p>
+        <p>
+          <strong>Board:</strong>
+          <%= board.width %> X <%= board.height %> (<%= board.width * board.height %> squares) -  💣<%= board.mine_count %>
+        </p>
+        <div style="display:flex;flex-direction:column">
+          <% board.grid.each do |row| %>
+            <div>
+              <% row.each do |col| %>
+                <% if col == nil %>
+                  <input type="checkbox" disabled style="width:16px">
+                <% end %>
+                <% if col == true %>
+                  <span>💣</span>
+                <% end %>          
+              <% end %>
+            </div>
           <% end %>
-          <% if col == true %>
-            <span>💣</span>
-          <% end %>          
-        <% end %>
+        </div>
       </div>
-    <% end %>
+    </div>
   </div>
-
 </div>
