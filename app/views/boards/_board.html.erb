@@ -11,19 +11,19 @@
 
   <p>
     <strong>Board:</strong>
-    <%= board.width %> X <%= board.height %> (<%= board.width * board.height %> squares)
+    <%= board.width %> X <%= board.height %> (<%= board.width * board.height %> squares) -  💣<%= board.mine_count %>
   </p>
 
 
-  <div style="display:flex;">
+  <div style="display:flex;flex-direction:column">
     <% board.grid.each do |row| %>
       <div>
         <% row.each do |col| %>
           <% if col == nil %>
-            <input type="checkbox" disabled>
+            <input type="checkbox" disabled style="width:16px">
           <% end %>
           <% if col == true %>
-            💣
+            <span>💣</span>
           <% end %>          
         <% end %>
       </div>

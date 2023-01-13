@@ -3,8 +3,42 @@
     <h1 class="text-center pb-3">New board</h1>
     <%= render "form", board: @board %>
   </div>
-
-  <div class="text-center">
-    <%= link_to "Back to boards", boards_path %>
+</div>
+<div class="row justify-content-center pt-5">
+  <div class="col-9 ">
+    <h1 class="text-center pb-3">10 Most Recent Boards </h1>
+    <table class="table table-dark table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Grid</th>
+          <th>Created</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @recent_boards.each do |board| %>
+        <tr>
+          <td><%= board.id %></td>
+          <td>
+            <%= link_to board.name, board, style: "color:white;" %>
+          </td>
+          <td><%= board.email %></td>
+          <td>
+            <%=board.width%> X <%=board.height %> (<%= board.width * board.height %>) -  💣 <%= board.mine_count %>
+          <td>
+            <%= board.created_at.strftime("%m/%d/%Y")%><br/>
+            <small><%= time_ago_in_words(board.created_at) %></small>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="row pt-5 pb-4 text-center">
+  <div class="col">
+    <%= link_to "View All Generated Boards", boards_path %> 
   </div>
 </div>
